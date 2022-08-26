@@ -1,7 +1,10 @@
 #include <algorithm>
 #include <iterator>
 
-template <typename T> T<int> easy_find(T container, int needle)
+template <typename T> typename T::iterator easy_find(T container, int needle)
 {
-	return std::find(container.begin(), container.end(), needle);
+    typename T::iterator result = std::find(container.begin(), container.end(), needle);
+    if (result == container.end())
+        throw std::exception();
+	return result;
 }
