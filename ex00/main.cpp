@@ -5,6 +5,11 @@
 #include <forward_list>
 #include <iostream>
 
+void print(int element)
+{
+    std::cout << element << std::endl;
+}
+
 template <typename T> void fullfill_normal(T &container)
 {
     container.push_back(1);
@@ -14,6 +19,15 @@ template <typename T> void fullfill_normal(T &container)
     container.push_back(5);
 }
 
+void fullfill_forward_list(std::forward_list<int> &container)
+{
+    container.push_front(5);
+    container.push_front(4);
+    container.push_front(3);
+    container.push_front(2);
+    container.push_front(1);
+}
+
 template <typename T> void test_normal_container_variation(T container, std::string container_typename)
 {
     std::cout << "////////////// Testing easy find on " << container_typename << " :" << std::endl;
@@ -21,11 +35,8 @@ template <typename T> void test_normal_container_variation(T container, std::str
 
     std::cout << container_typename << " content: " << std::endl;
 
-    typename T::iterator i;
-    for (i = container.begin(); i != container.end(); i++)
-    {
-        std::cout << *i << " " << std::endl;
-    }
+    std::for_each(container.begin(), container.end(), &print);
+
     std::cout << "Trying to find 3 and print iterator content: ";
     std::cout << *easy_find(container, 3) << std::endl;
 
@@ -45,19 +56,12 @@ template <typename T> void test_normal_container_variation(T container, std::str
 void test_forward_list(std::forward_list<int> container, std::string container_typename)
 {
     std::cout << "////////////// Testing easy find on " << container_typename << " :" << std::endl;
-    container.push_front(1);
-    container.push_front(2);
-    container.push_front(3);
-    container.push_front(4);
-    container.push_front(5);
+    fullfill_forward_list(container);
 
     std::cout << container_typename << " content: " << std::endl;
 
-    std::forward_list<int>::iterator i;
-    for (i = container.begin(); i != container.end(); i++)
-    {
-        std::cout << *i << " " << std::endl;
-    }
+    std::for_each(container.begin(), container.end(), &print);
+
     std::cout << "Trying to find 3 and print iterator content: ";
     std::cout << *easy_find(container, 3) << std::endl;
 
