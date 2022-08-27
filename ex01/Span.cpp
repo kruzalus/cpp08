@@ -5,7 +5,8 @@ Span::Span(unsigned int n) {
 }
 
 void Span::addNumber(unsigned int value) {
-    N++;
+    if (values.size() == N)
+        throw std::exception();
     values.insert(value);
 }
 
