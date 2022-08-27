@@ -5,11 +5,11 @@ int main(void)
 {
     test_default();
     test_overflow_span();
-    test_when_empty_span();
-    test_when_only_one_element_in_span();
-    test_on_many_elements(10000, 0);
-    test_on_many_elements(10000, 1);
-    test_on_many_elements(20000, 3);
+    test_empty_span();
+    test_only_one_element_in_span();
+    test_many_elements(10000, 0);
+    test_many_elements(10000, 1);
+    test_many_elements(20000, 3);
 }
 
 void test_default()
@@ -37,7 +37,7 @@ void test_overflow_span()
     }
 }
 
-void test_when_empty_span()
+void test_empty_span()
 {
     Span sp = Span(100500);
 
@@ -56,7 +56,7 @@ void test_when_empty_span()
     }
 }
 
-void test_when_only_one_element_in_span()
+void test_only_one_element_in_span()
 {
     Span sp = Span(100500);
 
@@ -76,7 +76,7 @@ void test_when_only_one_element_in_span()
     }
 }
 
-void test_on_many_elements(unsigned int elements_number, unsigned int step)
+void test_many_elements(unsigned int elements_number, unsigned int step)
 {
     Span sp = Span(elements_number);
 
