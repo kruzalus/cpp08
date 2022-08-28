@@ -1,6 +1,7 @@
 #ifndef CPP08_SPAN_H
 #define CPP08_SPAN_H
 #include <set>
+#include <iterator>
 
 class Span {
 private:
@@ -16,6 +17,7 @@ public:
     ~Span();
 
     void addNumber(unsigned int v);
+    void addNumbers(std::set<int>::iterator from, std::set<int>::iterator to);
     unsigned int shortestSpan();
     unsigned int longestSpan();
 

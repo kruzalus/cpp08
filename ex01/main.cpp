@@ -1,5 +1,13 @@
 #include "Span.h"
 #include <iostream>
+#include <vector>
+
+void test_default();
+void test_overflow_span();
+void test_empty_span();
+void test_only_one_element_in_span();
+void test_many_elements(unsigned int elements_number, unsigned int step);
+void test_multiple_insert(unsigned int elements_number, unsigned int step);
 
 int main(void)
 {
@@ -10,6 +18,7 @@ int main(void)
     test_many_elements(10000, 0);
     test_many_elements(10000, 1);
     test_many_elements(20000, 3);
+    test_multiple_insert(10000, 1);
 }
 
 void test_default()
@@ -90,5 +99,23 @@ void test_many_elements(unsigned int elements_number, unsigned int step)
     std::cout << "Result of Span::shortestSpan() on " << elements_number << " elements generated with step " << step
         << ": " << sp.shortestSpan() << std::endl;
     std::cout << "Result of Span::longestSpan() on " << elements_number << " elements generated with step " << step
+        << ": " << sp.longestSpan() << std::endl;
+}
+
+void test_multiple_insert(unsigned int elements_number, unsigned int step)
+{
+    Span sp = Span(elements_number);
+
+    std::multiset<int> v;
+    v.insert(1);
+    v.insert(2);
+    v.insert(4);
+    sp.addNumbers(v.begin(), v.end());
+
+    std::cout << "Result of multiple inserted Span::shortestSpan() on " << elements_number
+        << " elements generated with step " << step
+        << ": " << sp.shortestSpan() << std::endl;
+    std::cout << "Result of multiple inserted Span::longestSpan() on " << elements_number
+        << " elements generated with step " << step
         << ": " << sp.longestSpan() << std::endl;
 }
