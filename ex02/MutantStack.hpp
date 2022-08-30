@@ -49,21 +49,17 @@ typename MutantStack<T>::size_type MutantStack<T>::size() const {
 template <typename T>
 MutantStack<T>::MutantStack()
 {
-    std::vector<T> tmp;
-    C = tmp;
-
 }
 
 template <typename T>
 MutantStack<T>::MutantStack(const MutantStack &f)
 {
-
+    C = f.C;
 }
 
 template <typename T>
 MutantStack<T> &MutantStack<T>::operator=(const MutantStack& other)
 {
-    std::cout << "TTTT" << std::endl;
     C = other.C;
     return *this;
 }

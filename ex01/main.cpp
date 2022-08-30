@@ -1,6 +1,5 @@
 #include "Span.h"
 #include <iostream>
-#include <vector>
 
 void test_default();
 void test_overflow_span();
