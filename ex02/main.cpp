@@ -10,9 +10,6 @@ void push(MutantStack<T> &ms, T v)
 
 int main(void)
 {
-//    while (1)
-//    {
-
     MutantStack<int> m = MutantStack<int>();
 
     std::cout << "//////// Testing general functions " << std::endl;
@@ -49,11 +46,8 @@ int main(void)
     std::cout << "Pop ... " << std::endl;
     m.pop();
     std::cout << "Size: " << m.size() << std::endl;
-    std::cout << "Top: " << m.top() << std::endl;
 
     std::cout << "Is empty after popes? " << m.empty() << std::endl;
-
-
 
     std::cout << "//////// Testing operator= " << std::endl;
     std::cout << "Creating the second stack " << std::endl;
@@ -74,9 +68,5 @@ int main(void)
     std::cout << "Size of the first stack: " << m.size() << std::endl;
     std::cout << "Size of the third stack: " << m3.size() << std::endl;
 
-
-
-//        usleep(1000000);
-//    }
     return 0;
 }
