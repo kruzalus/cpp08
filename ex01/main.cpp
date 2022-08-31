@@ -1,7 +1,7 @@
 #include "Span.h"
 #include <iostream>
 
-void test_default();
+void test_from_subject();
 void test_overflow_span();
 void test_empty_span();
 void test_only_one_element_in_span();
@@ -10,7 +10,7 @@ void test_multiple_insert(unsigned int elements_number, unsigned int step);
 
 int main(void)
 {
-    test_default();
+    test_from_subject();
     test_overflow_span();
     test_empty_span();
     test_only_one_element_in_span();
@@ -20,7 +20,7 @@ int main(void)
     test_multiple_insert(10000, 1);
 }
 
-void test_default()
+void test_from_subject()
 {
     Span sp = Span(5);
     sp.addNumber(6);

@@ -3,17 +3,17 @@
 #include <unistd.h>
 #include <list>
 
-int subject_main();
-int subject_main_list();
+int test_from_subject();
+int test_from_subject_std_list();
 template <typename T>
 void push(MutantStack<T> &ms, T v);
 
 int main(void)
 {
     std::cout << "//////// Testing subject main when MutantStack used: " << std::endl;
-    subject_main();
+    test_from_subject();
     std::cout << "//////// Testing subject main when std::list used: " << std::endl;
-    subject_main_list();
+    test_from_subject_std_list();
 
     MutantStack<int> m = MutantStack<int>();
 
@@ -76,7 +76,7 @@ int main(void)
     return 0;
 }
 
-int subject_main()
+int test_from_subject()
 {
     MutantStack<int> mstack;
     mstack.push(5);
@@ -102,7 +102,7 @@ int subject_main()
     return 0;
 }
 
-int subject_main_list()
+int test_from_subject_std_list()
 {
     std::list<int> mstack;
     mstack.push_back(5);
