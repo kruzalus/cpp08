@@ -20,7 +20,6 @@ public:
     void addNumbers(std::set<int>::iterator from, std::set<int>::iterator to);
     unsigned int shortestSpan();
     unsigned int longestSpan();
-
 };
 
 
