@@ -10,9 +10,9 @@ void Span::addNumber(unsigned int value) {
     values.insert(value);
 }
 
-void Span::addNumbers(std::multiset<int>::iterator from, std::multiset<int>::iterator to) {
-    values.insert(from, to);
-}
+//void Span::addNumbers(std::multiset<int>::iterator from, std::multiset<int>::iterator to) {
+//    values.insert(from, to);
+//}
 
 unsigned int Span::shortestSpan()
 {

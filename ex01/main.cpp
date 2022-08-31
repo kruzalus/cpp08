@@ -1,23 +1,37 @@
 #include "Span.h"
 #include <iostream>
+#include <vector>
+#include <list>
 
 void test_from_subject();
 void test_overflow_span();
 void test_empty_span();
 void test_only_one_element_in_span();
 void test_many_elements(unsigned int elements_number, unsigned int step);
-void test_multiple_insert(unsigned int elements_number, unsigned int step);
+void test_multiple_insert_using_container(unsigned int elements_number, unsigned int step);
 
 int main(void)
 {
+    unsigned int elements_standard_num = 10000;
+    unsigned int elements_standard_step = 1;
+
     test_from_subject();
     test_overflow_span();
     test_empty_span();
     test_only_one_element_in_span();
-    test_many_elements(10000, 0);
-    test_many_elements(10000, 1);
+    test_many_elements(elements_standard_num, 0);
+    test_many_elements(elements_standard_num, elements_standard_step);
     test_many_elements(20000, 3);
-    test_multiple_insert(10000, 1);
+
+    std::cout << std::endl;
+    std::cout << "///////// Testing multiple insert using vector" << std::endl;
+//    std::vector<int> v(elements_standard_num);
+    test_multiple_insert_using_container(elements_standard_num, elements_standard_step);
+
+//    std::cout << std::endl;
+//    std::cout << "///////// Testing multiple insert using list" << std::endl;
+//    std::list<int> l;
+//    test_multiple_insert_using_container(l, elements_standard_num, elements_standard_step);
 }
 
 void test_from_subject()
@@ -101,14 +115,17 @@ void test_many_elements(unsigned int elements_number, unsigned int step)
         << ": " << sp.longestSpan() << std::endl;
 }
 
-void test_multiple_insert(unsigned int elements_number, unsigned int step)
+void test_multiple_insert_using_container(unsigned int elements_number, unsigned int step)
 {
     Span sp = Span(elements_number);
 
-    std::multiset<int> v;
-    v.insert(1);
-    v.insert(2);
-    v.insert(4);
+    std::vector<int> v(elements_number);
+    std::vector<int>::iterator i = v.begin();
+    v.insert(i, 1);
+    i++;
+    v.insert(i, 2);
+    i++;
+    v.insert(i, 4);
     sp.addNumbers(v.begin(), v.end());
 
     std::cout << "Result of multiple inserted Span::shortestSpan() on " << elements_number

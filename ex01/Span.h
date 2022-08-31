@@ -19,10 +19,16 @@ public:
     ~Span();
 
     void addNumber(unsigned int v);
-    void addNumbers(std::set<int>::iterator from, std::set<int>::iterator to);
+
+    template<typename T>
+    void addNumbers(T from, T to);
     unsigned int shortestSpan();
     unsigned int longestSpan();
 };
 
+template<typename T> void Span::addNumbers(T from, T to)
+{
+    values.insert(from, to);
+}
 
 #endif //CPP08_SPAN_H
