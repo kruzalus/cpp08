@@ -16,19 +16,13 @@ void Span::addNumbers(std::multiset<int>::iterator from, std::multiset<int>::ite
 
 unsigned int Span::shortestSpan()
 {
-    unsigned int min_diff = longestSpan();
-    std::multiset<unsigned int>::iterator i;
-
     if (values.empty() or values.size() == 1)
         throw std::exception();
-    for (i = values.begin(); i != values.end(); i++)
-    {
-        if (i == values.begin())
-            continue;
-        if (min_diff > *i - *(std::prev(i, 1)))
-            min_diff = *i - *(std::prev(i, 1));
-    }
-    return min_diff;
+
+    std::vector<unsigned int> diffs(N - 1);
+    std::transform(++values.begin(), values.end(),
+                   values.begin(), diffs.begin(), std::minus<unsigned int>());
+    return *std::min_element(diffs.begin(), diffs.end());
 }
 
 unsigned int Span::longestSpan()

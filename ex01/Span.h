@@ -1,7 +1,9 @@
 #ifndef CPP08_SPAN_H
 #define CPP08_SPAN_H
 #include <set>
+#include <vector>
 #include <iterator>
+#include <algorithm>
 
 class Span {
 private:
