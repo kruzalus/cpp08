@@ -18,9 +18,9 @@ public:
     ~Span();
 
     void addNumber(unsigned int v);
-
     template<typename T>
     void addNumbers(T from, T to);
+
     unsigned int shortestSpan();
     unsigned int longestSpan();
 };
@@ -29,16 +29,10 @@ template<typename T> void Span::addNumbers(T from, T to)
 {
     unsigned int inserting_count = 0;
     for (T iter = from; iter != to; ++iter)
-    {
         inserting_count++;
-    }
 
-    unsigned int actual_size = values.size();
-
-    if (actual_size + inserting_count > N)
-    {
+    if (values.size() + inserting_count > N)
         throw std::exception();
-    }
 
     values.insert(from, to);
 }

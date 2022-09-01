@@ -8,11 +8,9 @@ void test_overflow_span();
 void test_empty_span();
 void test_only_one_element_in_span();
 void test_many_elements(unsigned int elements_number, unsigned int step);
-void test_multiple_insert_using_vector(unsigned int elements_number, unsigned int step);
 void test_multiple_insert_using_array(unsigned int elements_number, unsigned int step);
-void test_multiple_insert_using_list(unsigned int elements_number, unsigned int step);
-void test_multiple_insert_using_set(unsigned int elements_number, unsigned int step);
-void test_multiple_insert_using_multiset(unsigned int elements_number, unsigned int step);
+template <typename T>
+void test_multiple_insert_using_container(T &c, unsigned int elements_number, unsigned int step);
 void test_multiple_insert_overflow(unsigned int elements_number, unsigned int input_size);
 
 int main(void)
@@ -30,11 +28,27 @@ int main(void)
 
     std::cout << std::endl;
     std::cout << "///////// Testing multiple insert:" << std::endl;
-    test_multiple_insert_using_vector(elements_standard_num, elements_standard_step);
+
+    std::cout << "/// Testing multiple insert using array:" << std::endl;
     test_multiple_insert_using_array(elements_standard_num, elements_standard_step);
-    test_multiple_insert_using_list(elements_standard_num, elements_standard_step);
-    test_multiple_insert_using_set(elements_standard_num, elements_standard_step);
-    test_multiple_insert_using_multiset(elements_standard_num, elements_standard_step);
+
+    std::cout << "/// Testing multiple insert using vector:" << std::endl;
+    std::vector<unsigned int> v;
+    test_multiple_insert_using_container(v, elements_standard_num, elements_standard_step);
+
+    std::cout << "/// Testing multiple insert using list:" << std::endl;
+    std::list<unsigned int> l;
+    test_multiple_insert_using_container(l, elements_standard_num, elements_standard_step);
+
+    std::cout << "/// Testing multiple insert using set:" << std::endl;
+    std::set<unsigned int> s;
+    test_multiple_insert_using_container(s, elements_standard_num, elements_standard_step);
+
+    std::cout << "/// Testing multiple insert using multi set:" << std::endl;
+    std::multiset<unsigned int> ms;
+    test_multiple_insert_using_container(ms, elements_standard_num, elements_standard_step);
+
+    std::cout << "/// Testing multiple insert overflow:" << std::endl;
     test_multiple_insert_overflow(elements_standard_num, elements_standard_num + 1);
 }
 
@@ -119,89 +133,30 @@ void test_many_elements(unsigned int elements_number, unsigned int step)
         << ": " << sp.longestSpan() << std::endl;
 }
 
-void test_multiple_insert_using_vector(unsigned int elements_number, unsigned int step)
-{
-    std::cout << "/// Testing multiple insert using vector:" << std::endl;
-    Span sp = Span(elements_number);
-
-    std::vector<unsigned int> v;
-    v.insert(v.end(), 100);
-    v.insert(v.end(), 123);
-    v.insert(v.end(), 521);
-    sp.addNumbers(v.begin(), v.end());
-
-    std::cout << "Result of multiple inserted Span::shortestSpan() on " << elements_number
-        << " elements generated with step " << step
-        << ": " << sp.shortestSpan() << std::endl;
-    std::cout << "Result of multiple inserted Span::longestSpan() on " << elements_number
-        << " elements generated with step " << step
-        << ": " << sp.longestSpan() << std::endl;
-}
-
 void test_multiple_insert_using_array(unsigned int elements_number, unsigned int step)
 {
-    std::cout << "/// Testing multiple insert using array:" << std::endl;
     Span sp = Span(elements_number);
 
     unsigned int c[] = {100, 123, 521};
     sp.addNumbers(c, c + 3);
 
     std::cout << "Result of multiple inserted Span::shortestSpan() on " << elements_number
-        << " elements generated with step " << step
-        << ": " << sp.shortestSpan() << std::endl;
+              << " elements generated with step " << step
+              << ": " << sp.shortestSpan() << std::endl;
     std::cout << "Result of multiple inserted Span::longestSpan() on " << elements_number
-        << " elements generated with step " << step
-        << ": " << sp.longestSpan() << std::endl;
+              << " elements generated with step " << step
+              << ": " << sp.longestSpan() << std::endl;
 }
 
-void test_multiple_insert_using_list(unsigned int elements_number, unsigned int step)
+template <typename T>
+void test_multiple_insert_using_container(T &c, unsigned int elements_number, unsigned int step)
 {
-    std::cout << "/// Testing multiple insert using list:" << std::endl;
     Span sp = Span(elements_number);
 
-    std::list<unsigned int> l;
-    l.insert(l.end(), 100);
-    l.insert(l.end(), 123);
-    l.insert(l.end(), 521);
-    sp.addNumbers(l.begin(), l.end());
-
-    std::cout << "Result of multiple inserted Span::shortestSpan() on " << elements_number
-        << " elements generated with step " << step
-        << ": " << sp.shortestSpan() << std::endl;
-    std::cout << "Result of multiple inserted Span::longestSpan() on " << elements_number
-        << " elements generated with step " << step
-        << ": " << sp.longestSpan() << std::endl;
-}
-
-void test_multiple_insert_using_set(unsigned int elements_number, unsigned int step)
-{
-    std::cout << "/// Testing multiple insert using set:" << std::endl;
-    Span sp = Span(elements_number);
-
-    std::set<unsigned int> s;
-    s.insert(s.end(), 100);
-    s.insert(s.end(), 123);
-    s.insert(s.end(), 521);
-    sp.addNumbers(s.begin(), s.end());
-
-    std::cout << "Result of multiple inserted Span::shortestSpan() on " << elements_number
-        << " elements generated with step " << step
-        << ": " << sp.shortestSpan() << std::endl;
-    std::cout << "Result of multiple inserted Span::longestSpan() on " << elements_number
-        << " elements generated with step " << step
-        << ": " << sp.longestSpan() << std::endl;
-}
-
-void test_multiple_insert_using_multiset(unsigned int elements_number, unsigned int step)
-{
-    std::cout << "/// Testing multiple insert using multi set:" << std::endl;
-    Span sp = Span(elements_number);
-
-    std::multiset<unsigned int> s;
-    s.insert(s.end(), 100);
-    s.insert(s.end(), 123);
-    s.insert(s.end(), 521);
-    sp.addNumbers(s.begin(), s.end());
+    c.insert(c.end(), 100);
+    c.insert(c.end(), 123);
+    c.insert(c.end(), 521);
+    sp.addNumbers(c.begin(), c.end());
 
     std::cout << "Result of multiple inserted Span::shortestSpan() on " << elements_number
         << " elements generated with step " << step
@@ -213,7 +168,6 @@ void test_multiple_insert_using_multiset(unsigned int elements_number, unsigned 
 
 void test_multiple_insert_overflow(unsigned int elements_number, unsigned int input_size)
 {
-    std::cout << "/// Testing multiple insert overflow:" << std::endl;
     Span sp = Span(elements_number);
 
     unsigned int c[input_size];
