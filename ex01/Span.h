@@ -1,10 +1,8 @@
 #ifndef CPP08_SPAN_H
 #define CPP08_SPAN_H
 #include <set>
-#include <vector>
 #include <iterator>
 #include <algorithm>
-#include <iostream>
 
 class Span {
 private:
@@ -37,16 +35,12 @@ template<typename T> void Span::addNumbers(T from, T to)
 
     unsigned int actual_size = values.size();
 
-    std::cout << "inserting_count " << inserting_count << std::endl;
-    std::cout << "real_size " << values.size() << std::endl;
-
     if (actual_size + inserting_count > N)
     {
         throw std::exception();
     }
 
     values.insert(from, to);
-    std::cout << "real_size " << values.size() << std::endl;
 }
 
 #endif //CPP08_SPAN_H

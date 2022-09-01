@@ -1,4 +1,5 @@
 #include "Span.h"
+#include <vector>
 
 Span::Span(unsigned int n) {
     N = n;
@@ -9,10 +10,6 @@ void Span::addNumber(unsigned int value) {
         throw std::exception();
     values.insert(value);
 }
-
-//void Span::addNumbers(std::multiset<int>::iterator from, std::multiset<int>::iterator to) {
-//    values.insert(from, to);
-//}
 
 unsigned int Span::shortestSpan()
 {
